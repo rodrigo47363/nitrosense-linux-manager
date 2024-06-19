@@ -1,0 +1,1 @@
+# nitrosense-linux-manager
