@@ -4,8 +4,9 @@ import os
 import json
 import subprocess
 from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QLabel,
-                             QProgressBar, QTimer, QPushButton, QComboBox,
+                             QProgressBar, QPushButton, QComboBox,
                              QLineEdit, QHBoxLayout, QMessageBox)
+from PyQt5.QtCore import QTimer
 
 class NitroSenseLinux(QWidget):
     def __init__(self):
@@ -78,9 +79,12 @@ class NitroSenseLinux(QWidget):
         gpu_temp = self.get_gpu_temperature()
         gpu_usage = self.get_gpu_usage()
 
+        # Convertir el uso de CPU a entero
+        cpu_usage_int = int(cpu_usage)
+
         self.cpu_temp_label.setText(f"Temperatura CPU: {cpu_temp} °C")
-        self.cpu_usage_label.setText(f"Uso CPU: {cpu_usage} %")
-        self.cpu_usage_bar.setValue(cpu_usage)
+        self.cpu_usage_label.setText(f"Uso CPU: {cpu_usage_int} %")
+        self.cpu_usage_bar.setValue(cpu_usage_int)
 
         self.gpu_temp_label.setText(f"Temperatura GPU: {gpu_temp} °C")
         self.gpu_usage_label.setText(f"Uso GPU: {gpu_usage} %")
